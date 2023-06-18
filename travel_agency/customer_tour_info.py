@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setGeometry(QtCore.QRect(0, 0, 1000, 300))
         self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(9)
+        self.tableWidget.setColumnCount(10)
         self.tableWidget.setRowCount(0)
         self.tableWidget.setColumnWidth(3,150)
         
@@ -41,6 +41,8 @@ class Ui_MainWindow(object):
         self.tableWidget.setHorizontalHeaderItem(7, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(8, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(9, item)
 
          # заголовки
 
@@ -95,6 +97,17 @@ class Ui_MainWindow(object):
         self.label_7.setGeometry(QtCore.QRect(1050, 290, 100, 16))
         self.label_7.setObjectName("label")
 
+
+        #процедуры
+
+        self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_5.setGeometry(QtCore.QRect(1300, 320, 111, 23))
+        self.pushButton_5.setObjectName("pushButton_5")
+
+        self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_6.setGeometry(QtCore.QRect(1300, 360, 111, 23))
+        self.pushButton_6.setObjectName("pushButton_6")
+
          # кнопка для добавления данных в бд
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(1050, 360, 111, 23))
@@ -140,6 +153,8 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Код отеля"))
         item = self.tableWidget.horizontalHeaderItem(8)
         item.setText(_translate("MainWindow", "Код экскурсии"))
+        item = self.tableWidget.horizontalHeaderItem(9)
+        item.setText(_translate("MainWindow", "Cумма со скидкой"))
 
         self.label_0.setText(_translate("MainWindow", "Добавление карточки"))
         self.label_0.setFont(QFont('Arial', 14))
@@ -161,3 +176,5 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "Удалить"))
         self.pushButton_4.setText(_translate("MainWindow", "Назад"))
         
+        self.pushButton_5.setText(_translate("MainWindow", "Сумма тура"))
+        self.pushButton_6.setText(_translate("MainWindow", "Скидка на тур"))

@@ -428,7 +428,9 @@ class CustomerTourInfo(QtWidgets.QMainWindow, customer_tour_info.Ui_MainWindow):
     def init(self):
         self.pushButton_4.clicked.connect(self.back)
         self.pushButton.clicked.connect(self.add)
-        self.pushButton_2.clicked.connect(self.delete) 
+        self.pushButton_2.clicked.connect(self.delete)
+        self.pushButton_5.clicked.connect(self.tour_sum) 
+        self.pushButton_6.clicked.connect(self.sum_sale)  
 
     def showdb(self):
         with connect(
@@ -449,7 +451,7 @@ class CustomerTourInfo(QtWidgets.QMainWindow, customer_tour_info.Ui_MainWindow):
 
                     k = 0
                     for j in range(0, len(result)):
-                        for i in range(0, 9):
+                        for i in range(0, 10):
                             self.tableWidget.setItem(j, i, QtWidgets.QTableWidgetItem(str(b[k])))
                             k += 1
 
@@ -495,6 +497,32 @@ class CustomerTourInfo(QtWidgets.QMainWindow, customer_tour_info.Ui_MainWindow):
                 connection.commit()
         
                 self.lineEdit_2.setText("")
+                self.showdb() 
+
+    def tour_sum(self):
+        with connect(
+                host="localhost",
+                user=config.user,
+                password=config.password,
+                database=config.db,
+        ) as connection:
+            query = "call calculate_tour_cost()"
+            with connection.cursor() as cursor:
+                cursor.execute(query)
+                connection.commit()
+                self.showdb() 
+
+    def sum_sale(self):
+        with connect(
+                host="localhost",
+                user=config.user,
+                password=config.password,
+                database=config.db,
+        ) as connection:
+            query = "call calculate_tour_discount()"
+            with connection.cursor() as cursor:
+                cursor.execute(query)
+                connection.commit()
                 self.showdb() 
 
     def back(self):
