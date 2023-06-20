@@ -218,7 +218,7 @@ class CustomerPassportInfo(QtWidgets.QMainWindow, passport_info.Ui_MainWindow):
                             k += 1
 
     def add(self):
-        pasportNo = self.lineEdit.text()
+        passportNo = self.lineEdit.text()
         dateOfIssue = self.lineEdit_3.text()
         dateOfExpiry = self.lineEdit_4.text()
         idCustomer = self.lineEdit_5.text()
@@ -228,8 +228,8 @@ class CustomerPassportInfo(QtWidgets.QMainWindow, passport_info.Ui_MainWindow):
                 password=config.password,
                 database=config.db,
             ) as connection:
-                insert_query = "INSERT INTO passport (pasportNo, dateOfIssue, dateOfExpiry, idCustomer) VALUES (%s, %s, %s, %s)"
-                insert_tuple = [(pasportNo, dateOfIssue, dateOfExpiry, idCustomer)]
+                insert_query = "INSERT INTO passport (passportNo, dateOfIssue, dateOfExpiry, idCustomer) VALUES (%s, %s, %s, %s)"
+                insert_tuple = [(passportNo, dateOfIssue, dateOfExpiry, idCustomer)]
                 with connection.cursor() as cursor:
                     cursor.execute(insert_query, insert_tuple[0])
                     connection.commit()

@@ -1,41 +1,41 @@
 script = """
-DROP SCHEMA IF EXISTS `travel_agency` ;
+DROP SCHEMA IF EXISTS `travel_agency2` ;
 
-CREATE SCHEMA IF NOT EXISTS `travel_agency` DEFAULT CHARACTER SET utf8 ;
-USE `travel_agency` ;
+CREATE SCHEMA IF NOT EXISTS `travel_agency2` DEFAULT CHARACTER SET utf8 ;
+USE `travel_agency2` ;
 
-DROP TABLE IF EXISTS `travel_agency`.`Customer` ;
+DROP TABLE IF EXISTS `travel_agency2`.`Customer` ;
 
-CREATE TABLE IF NOT EXISTS `travel_agency`.`Customer` (
+CREATE TABLE IF NOT EXISTS `travel_agency2`.`Customer` (
   `idCustomer` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `surname` VARCHAR(45) NOT NULL,
   `phone` VARCHAR(11) NULL,
   PRIMARY KEY (`idCustomer`));
 
-DROP TABLE IF EXISTS `travel_agency`.`Country` ;
+DROP TABLE IF EXISTS `travel_agency2`.`Country` ;
 
-CREATE TABLE IF NOT EXISTS `travel_agency`.`Country` (
+CREATE TABLE IF NOT EXISTS `travel_agency2`.`Country` (
   `idCountry` INT NOT NULL AUTO_INCREMENT,
   `nameCountry` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idCountry`));
 
-DROP TABLE IF EXISTS `travel_agency`.`Tour` ;
+DROP TABLE IF EXISTS `travel_agency2`.`Tour` ;
 
-CREATE TABLE IF NOT EXISTS `travel_agency`.`Tour` (
+CREATE TABLE IF NOT EXISTS `travel_agency2`.`Tour` (
   `idTour` INT NOT NULL AUTO_INCREMENT,
   `idCountry` INT NOT NULL,
   `nameTour` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idTour`),
   CONSTRAINT `idCountryT`
     FOREIGN KEY (`idCountry`)
-    REFERENCES `travel_agency`.`Country` (`idCountry`)
+    REFERENCES `travel_agency2`.`Country` (`idCountry`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-DROP TABLE IF EXISTS `travel_agency`.`Hotel` ;
+DROP TABLE IF EXISTS `travel_agency2`.`Hotel` ;
 
-CREATE TABLE IF NOT EXISTS `travel_agency`.`Hotel` (
+CREATE TABLE IF NOT EXISTS `travel_agency2`.`Hotel` (
   `idHotel` INT NOT NULL AUTO_INCREMENT,
   `nameHotel` VARCHAR(45) NOT NULL,
   `idCountry` INT NOT NULL,
@@ -43,14 +43,14 @@ CREATE TABLE IF NOT EXISTS `travel_agency`.`Hotel` (
   PRIMARY KEY (`idHotel`),
   CONSTRAINT `idCountry`
     FOREIGN KEY (`idCountry`)
-    REFERENCES `travel_agency`.`Country` (`idCountry`)
+    REFERENCES `travel_agency2`.`Country` (`idCountry`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
-DROP TABLE IF EXISTS `travel_agency`.`Excursion` ;
+DROP TABLE IF EXISTS `travel_agency2`.`Excursion` ;
 
-CREATE TABLE IF NOT EXISTS `travel_agency`.`Excursion` (
+CREATE TABLE IF NOT EXISTS `travel_agency2`.`Excursion` (
   `idExcursion` INT NOT NULL AUTO_INCREMENT,
   `nameExcursion` VARCHAR(45) NOT NULL,
   `descriptionExcursion` VARCHAR(255) NULL,
@@ -58,9 +58,9 @@ CREATE TABLE IF NOT EXISTS `travel_agency`.`Excursion` (
   `cost` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`idExcursion`));
 
-DROP TABLE IF EXISTS `travel_agency`.`CustomerTour` ;
+DROP TABLE IF EXISTS `travel_agency2`.`CustomerTour` ;
 
-CREATE TABLE IF NOT EXISTS `travel_agency`.`CustomerTour` (
+CREATE TABLE IF NOT EXISTS `travel_agency2`.`CustomerTour` (
   `idCustomerTour` INT NOT NULL AUTO_INCREMENT,
   `idCustomer` INT NOT NULL,
   `beginDateOfTour` DATE NOT NULL,
@@ -74,28 +74,28 @@ CREATE TABLE IF NOT EXISTS `travel_agency`.`CustomerTour` (
   PRIMARY KEY (`idCustomerTour`),
   CONSTRAINT `idTour`
     FOREIGN KEY (`idTour`)
-    REFERENCES `travel_agency`.`Tour` (`idTour`)
+    REFERENCES `travel_agency2`.`Tour` (`idTour`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `idCustomer`
     FOREIGN KEY (`idCustomer`)
-    REFERENCES `travel_agency`.`Customer` (`idCustomer`)
+    REFERENCES `travel_agency2`.`Customer` (`idCustomer`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `idHotel`
     FOREIGN KEY (`idHotel`)
-    REFERENCES `travel_agency`.`Hotel` (`idHotel`)
+    REFERENCES `travel_agency2`.`Hotel` (`idHotel`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `idExcursion`
     FOREIGN KEY (`idExcursion`)
-    REFERENCES `travel_agency`.`Excursion` (`idExcursion`)
+    REFERENCES `travel_agency2`.`Excursion` (`idExcursion`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-DROP TABLE IF EXISTS `travel_agency`.`Passport` ;
+DROP TABLE IF EXISTS `travel_agency2`.`Passport` ;
 
-CREATE TABLE IF NOT EXISTS `travel_agency`.`Passport` (
+CREATE TABLE IF NOT EXISTS `travel_agency2`.`Passport` (
   `idPassport` INT NOT NULL AUTO_INCREMENT,
   `passportNo` VARCHAR(10) NOT NULL,
   `dateOfIssue` DATE NOT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `travel_agency`.`Passport` (
   PRIMARY KEY (`idPassport`),
   CONSTRAINT `idCustomerP`
     FOREIGN KEY (`idCustomer`)
-    REFERENCES `travel_agency`.`Customer` (`idCustomer`)
+    REFERENCES `travel_agency2`.`Customer` (`idCustomer`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 """
